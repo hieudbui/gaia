@@ -16,12 +16,8 @@ class Media {
       return Promise.resolve(null);
     }
     const categoryId = category.tid;
-    return mediaApis.getTitles().then((pageableTitleResults) => {
-      const titles = pageableTitleResults.titles;
-      //destructive sort
-      const hasPreviewTitles = titles.filter((t) => t.preview);
-      hasPreviewTitles.sort((a, b) => b.preview.duration - a.preview.duration);
-
+    return mediaApis.getTitles(categoryId).then((pageableTitleResults) => {
+      const hasPreviewTitles = pageableTitleResults.titles.filter((t) => t.preview).sort((a, b) => b.preview.duration - a.preview.duration);
       const longestTitlePreview = hasPreviewTitles[0];
       if (longestTitlePreview) {
         return {

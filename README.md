@@ -1,8 +1,9 @@
 Gaia test (backend)
 ================================
 
-**Required components for running the application in development mode**
+**Required components for running the application**
 ```
+docker
 node v6.9.4
 nodemon
 ```
@@ -24,21 +25,20 @@ npm run all_integration_test
 ```
 open a terminal
 npm run dev_server
-curl http://localhost:49160/terms/26681/longest-preview-media-url
+curl http://localhost:3000/terms/26681/longest-preview-media-url
 ```
 
 **Start the application in prod mode**
 ```
 Open a terminal
 npm start
-curl http://localhost:49160/terms/26681/longest-preview-media-url
+curl http://localhost:3000/terms/26681/longest-preview-media-url
 ```
 
 
 **Start the app with with Docker image**
 ```
 Open a terminal
-cd to the project root dir
 docker build -t <tag> .
 docker run -p 49160:3000 -d <image tag from above>
 curl http://localhost:49160/terms/26681/longest-preview-media-url

@@ -39,8 +39,8 @@ describe('MediaApis', () => {
 
   describe('#getCategories', () => {
     it('success call will return json', () => {
-      let termId = 'termId';
-      let response = {json: sinon.stub()};
+      const termId = 'termId';
+      const response = {json: sinon.stub()};
       fetchStub.returns(Promise.resolve(response));
       return mediaApis.getCategories(termId).then(() => {
         expect(fetchStub.callCount).toBe(1);
@@ -51,8 +51,8 @@ describe('MediaApis', () => {
     });
 
     it('failure call will not return json', () => {
-      let termId = 'termId';
-      let response = {json: sinon.stub()};
+      const termId = 'termId';
+      const response = {json: sinon.stub()};
       fetchStub.returns(Promise.reject(response));
       return mediaApis.getCategories(termId).catch((error) => {
         expect(error.json.callCount).toBe(0);

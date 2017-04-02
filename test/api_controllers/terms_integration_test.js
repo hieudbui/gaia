@@ -3,7 +3,8 @@ const request = require('supertest');
 const createServer = require('../../app_server');
 
 
-describe('TermsController', () => {
+describe('/terms REST', function() {
+  this.timeout(3000);
 
   let app;
   before(() => {

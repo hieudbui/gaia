@@ -31,8 +31,8 @@ describe('TermsController', () => {
     it('term not found should return a 404', () => {
       mediaServiceGetFirstCategoryStub.returns(Promise.resolve(null));
 
-      let termId = 'termId';
-      let req = {
+      const termId = 'termId';
+      const req = {
         params: {termId: termId}
       }
       return termsController.longestPreview(req, response).then(() => {
@@ -45,8 +45,8 @@ describe('TermsController', () => {
       mediaServiceGetFirstCategoryStub.returns(Promise.resolve({}));
       mediaServiceGetLongestPreviewTitleStub.returns(Promise.reject('blah'));
 
-      let termId = 'termId';
-      let req = {
+      const termId = 'termId';
+      const req = {
         params: {termId: termId}
       }
       return termsController.longestPreview(req, response).then(() => {
@@ -55,23 +55,19 @@ describe('TermsController', () => {
       })
     });
 
-
     it('success will return the title', () => {
-      let title = {key: 'value'};
+      const title = {key: 'value'};
       mediaServiceGetFirstCategoryStub.returns(Promise.resolve({}));
       mediaServiceGetLongestPreviewTitleStub.returns(Promise.resolve({}));
       mediaServiceGetPreviewTitleStub.returns(Promise.resolve(title));
 
-      let termId = 'termId';
-      let req = {
+      const termId = 'termId';
+      const req = {
         params: {termId: termId}
       }
       return termsController.longestPreview(req, response).then(() => {
         expect(response.jsonObject).toEqual(title);
       })
     });
-
   });
-
-
 });

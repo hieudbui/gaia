@@ -1,7 +1,6 @@
 const sinon = require('sinon');
 const expect = require('expect');
 const mockery = require('mockery');
-const _ = require('lodash');
 
 describe('MediaApis', () => {
 

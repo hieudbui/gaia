@@ -6,7 +6,7 @@ class TermsController {
     const {termId} = req.params;
     const firstCategoryPromise = mediaService.getFirstCategory(termId);
     const longestPreviewTitlePromise = firstCategoryPromise.then(category => mediaService.getLongestPreviewTitle(category));
-    const previewTitlePromise = longestPreviewTitlePromise.then(longestPreviewTitle => mediaService.getPreviewTitle(longestPreviewTitle));
+    const previewTitlePromise = longestPreviewTitlePromise.then(longestPreviewTitle => mediaService.getPreviewTitleMedia(longestPreviewTitle));
 
     return Promise.all([firstCategoryPromise, previewTitlePromise, previewTitlePromise]).then((resolves) => {
       if (!resolves[0]) {

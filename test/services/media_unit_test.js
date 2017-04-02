@@ -42,48 +42,46 @@ describe('MediaService', () => {
     });
   });
 
-  describe('#getPreviewTitle', () => {
+  describe('#getPreviewTitleMedia', () => {
     it('undefined preview title should return null', () => {
-      return mediaService.getPreviewTitle().then((previewTitle) => {
+      return mediaService.getPreviewTitleMedia().then((previewTitle) => {
         expect(previewTitle).toNotExist();
       })
     });
 
-    it('no title should return null', () => {
+    it('no media found should return null', () => {
       const previewTitle = {
         previewTitleId: 'previewTitleId',
         titleId: 'titleId',
         duration: 100
       };
-      mediaApisMock.expects('getTitle').withArgs(previewTitle.previewTitleId).returns(Promise.resolve(null));
-      return mediaService.getPreviewTitle(previewTitle).then((title) => {
+      mediaApisMock.expects('getMedia').withArgs(previewTitle.previewTitleId).returns(Promise.resolve(null));
+      return mediaService.getPreviewTitleMedia(previewTitle).then((title) => {
         expect(title).toNotExist();
         mediaApisMock.verify();
       })
     });
 
-
-    it('has title should return title with bcHLS media url', () => {
+    it('has media should return title with bcHLS media url', () => {
       const previewTitle = {
         previewTitleId: 'previewTitleId',
         titleId: 'titleId',
         duration: 100
       };
-      const title = {
+      const media = {
         mediaUrls: {
           bcHLS: 'http://somewhere.com'
         }
-      }
-      mediaApisMock.expects('getTitle').withArgs(previewTitle.previewTitleId).returns(Promise.resolve(title));
-      return mediaService.getPreviewTitle(previewTitle).then((result) => {
+      };
+      mediaApisMock.expects('getMedia').withArgs(previewTitle.previewTitleId).returns(Promise.resolve(media));
+      return mediaService.getPreviewTitleMedia(previewTitle).then((result) => {
         expect(result.titleNid).toBe(previewTitle.titleId)
         expect(result.previewNid).toBe(previewTitle.previewTitleId)
         expect(result.previewDuration).toBe(previewTitle.duration)
-        expect(result.bcHLS).toBe(title.mediaUrls.bcHLS)
+        expect(result.bcHLS).toBe(media.mediaUrls.bcHLS)
         mediaApisMock.verify();
       })
     });
-
   });
 
   describe('#getLongestPreviewTitle', () => {

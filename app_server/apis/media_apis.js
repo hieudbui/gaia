@@ -25,7 +25,7 @@ class MediaApis {
     })
   }
 
-  getTitle(titleId) {
+  getMedia(titleId) {
     const getTitleURI = `${environment.getGaiaURL()}/media/${titleId}`;
     return fetch(getTitleURI, {
       headers: HEADERS

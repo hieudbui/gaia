@@ -33,12 +33,12 @@ class Media {
     });
   };
 
-  getPreviewTitle(previewTitle) {
+  getPreviewTitleMedia(previewTitle) {
     if (!previewTitle) {
       return Promise.resolve(null);
     }
     const {previewTitleId, titleId, duration} = previewTitle;
-    return mediaApis.getTitle(previewTitleId).then((title) => {
+    return mediaApis.getMedia(previewTitleId).then((title) => {
       if (title) {
         return {
           bcHLS: title.mediaUrls.bcHLS,

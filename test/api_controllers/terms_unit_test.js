@@ -12,19 +12,19 @@ describe('TermsController', () => {
 
   let mediaServiceGetFirstCategoryStub;
   let mediaServiceGetLongestPreviewTitleStub;
-  let mediaServiceGetPreviewTitleStub;
+  let mediaServiceGetPreviewTitleMediaStub;
 
   beforeEach(() => {
     response = _.cloneDeep(TestObjects.mockResponse);
     mediaServiceGetFirstCategoryStub = sinon.stub(mediaService, 'getFirstCategory');
     mediaServiceGetLongestPreviewTitleStub = sinon.stub(mediaService, 'getLongestPreviewTitle');
-    mediaServiceGetPreviewTitleStub = sinon.stub(mediaService, 'getPreviewTitle');
+    mediaServiceGetPreviewTitleMediaStub = sinon.stub(mediaService, 'getPreviewTitleMedia');
   });
 
   afterEach(() => {
     mediaServiceGetFirstCategoryStub.restore();
     mediaServiceGetLongestPreviewTitleStub.restore();
-    mediaServiceGetPreviewTitleStub.restore();
+    mediaServiceGetPreviewTitleMediaStub.restore();
   });
 
   describe('#longestPreview', () => {
@@ -59,7 +59,7 @@ describe('TermsController', () => {
       const title = {key: 'value'};
       mediaServiceGetFirstCategoryStub.returns(Promise.resolve({}));
       mediaServiceGetLongestPreviewTitleStub.returns(Promise.resolve({}));
-      mediaServiceGetPreviewTitleStub.returns(Promise.resolve(title));
+      mediaServiceGetPreviewTitleMediaStub.returns(Promise.resolve(title));
 
       const termId = 'termId';
       const req = {
